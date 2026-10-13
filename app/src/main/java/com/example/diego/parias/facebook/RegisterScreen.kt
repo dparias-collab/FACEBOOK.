@@ -17,11 +17,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
-@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FacebookRegisterScreen() {
+fun FacebookRegisterScreen(navController: NavController? = null) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var emailOrPhone by remember { mutableStateOf("") }
@@ -36,8 +37,9 @@ fun FacebookRegisterScreen() {
             TopAppBar(
                 title = { },
                 navigationIcon = {
-
-
+                    IconButton(onClick = { navController?.popBackStack() }) {
+                        // Aquí podrías agregar un icono de volver
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surface
@@ -200,7 +202,7 @@ fun FacebookRegisterScreen() {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Ir a Iniciar sesión
-            TextButton(onClick = {}) {
+            TextButton(onClick = { navController?.popBackStack() }) {
                 Text(
                     text = "¿Ya tienes una cuenta?",
                     color = FacebookBlue
@@ -210,4 +212,10 @@ fun FacebookRegisterScreen() {
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FacebookRegisterScreenPreview() {
+    FacebookRegisterScreen()
 }
