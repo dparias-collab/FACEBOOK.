@@ -16,18 +16,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val myNavController = rememberNavController()
-            NavHost(
-                navController = myNavController,
-                startDestination = "login",
-                modifier = Modifier.fillMaxSize()
-            ) {
-                composable(route = "login") {
-                    FacebookLoginScreen()
-                }
-                composable(route = "register") {
-                    FacebookRegisterScreen()
-                }
-            }
         }
     }
 }
